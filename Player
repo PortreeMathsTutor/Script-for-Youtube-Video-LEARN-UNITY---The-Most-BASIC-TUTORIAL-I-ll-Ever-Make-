@@ -1,12 +1,13 @@
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{
+{[SerializableField] private Transform groundCheckTransform = null;
 bool JumpKeyWasPressed;
 float horizontalInput;
+private Rigidbody rigidbodyComponent;
 void Start 
 {
-
+rigidbodyComponent = GetComponent<RigidBody>();
 }
 void Update()
 {
@@ -14,13 +15,21 @@ void Update()
   {
    JumpKeyWasPressed=true;
   }
+  horizontalInput=Input.GetAxis("Horizontal");
 }
 
 void FixedUpdate()
-{GetComponent<RigedBody>().velocity = new Vector3(horizontalInput,0,0);
+{
+rigidbodyComponent.velocity = new Vector3(horizontalInput,0,0);
+if(Physics.OverlapSphere(groundCheckTransform.position.0.0f).Length==1)
+{ 
+return;
+}
+
+
   if (JumpKeyWasPressed)
    {
-  GetComponent<RigidBody>().AddForce(Vector3.up*5, ForceMode.VelocityChange);
+ rigidbodyComponent.AddForce(Vector3.up*5, ForceMode.VelocityChange);
   JumpKeyWasPressed=false
    }
 }
