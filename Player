@@ -4,6 +4,7 @@ public class Player : MonoBehaviour
 {
 [SerializableField] private Transform groundCheckTransform = null;
 [SerializableField] private LayerMask playerMask; //use this if you give the player and the ground check the same layer.
+// in the exposed [SerializableField] put every layer except the player layer.
 bool JumpKeyWasPressed;
 float horizontalInput;
 private Rigidbody rigidbodyComponent;
