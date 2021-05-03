@@ -1,7 +1,9 @@
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{[SerializableField] private Transform groundCheckTransform = null;
+{
+[SerializableField] private Transform groundCheckTransform = null;
+[SerializableField] private LayerMask playerMask; //use this if you give the player and the ground check the same layer.
 bool JumpKeyWasPressed;
 float horizontalInput;
 private Rigidbody rigidbodyComponent;
@@ -21,7 +23,8 @@ void Update()
 void FixedUpdate()
 {
 rigidbodyComponent.velocity = new Vector3(horizontalInput,0,0);
-if(Physics.OverlapSphere(groundCheckTransform.position.0.0f).Length==1)
+//if(Physics.OverlapSphere(groundCheckTransform.position.0.0f).Length==1)
+if(Physics.OverlapSphere(groundCheckTransform.position.0.0f,playerMask).Length==0)
 { 
 return;
 }
