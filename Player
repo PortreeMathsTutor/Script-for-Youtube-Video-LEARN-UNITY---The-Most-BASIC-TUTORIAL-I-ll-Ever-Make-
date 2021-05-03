@@ -1,0 +1,27 @@
+using UnityEngine;
+
+public class Player : MonoBehaviour
+{
+bool JumpKeyWasPressed;
+float horizontalInput;
+void Start 
+{
+
+}
+void Update()
+{
+  if (Input.GrtKeyDown(KeyCode.Space))
+  {
+   JumpKeyWasPressed=true;
+  }
+}
+
+void FixedUpdate()
+{GetComponent<RigedBody>().velocity = new Vector3(horizontalInput,0,0);
+  if (JumpKeyWasPressed)
+   {
+  GetComponent<RigidBody>().AddForce(Vector3.up*5, ForceMode.VelocityChange);
+  JumpKeyWasPressed=false
+   }
+}
+}
